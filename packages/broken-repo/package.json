@@ -1,0 +1,16 @@
+{
+  "name": "broken-repo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "tsx": "^4.23.5",
+    "typescript": "^5.9.2",
+    "vitest": "^4.1.10"
+  }
+}

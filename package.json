@@ -1,0 +1,19 @@
+{
+  "name": "Task-3-Agent-Loop",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.34.5",
+  "scripts": {
+    "agent": "tsx packages/agent/src/cli.ts",
+    "test": "pnpm --filter agent test && pnpm --filter broken-repo test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "groq-sdk": "^1.5.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.5",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,29 @@
+{"id":"easy-1","difficulty":"easy","test":"tests/math.test.ts","bug":"Off-by-one error in add()","expected_tool_sequence":["read_file","propose_edit","run_test"],"expected_result":"pass"}
+
+{"id":"easy-2","difficulty":"easy","test":"tests/string.test.ts","bug":"Incorrect string concatenation","expected_tool_sequence":["read_file","propose_edit","run_test"],"expected_result":"pass"}
+
+{"id":"easy-3","difficulty":"easy","test":"tests/null.test.ts","bug":"Missing null check","expected_tool_sequence":["read_file","propose_edit","run_test"],"expected_result":"pass"}
+
+{"id":"easy-4","difficulty":"easy","test":"tests/import.test.ts","bug":"Wrong import path","expected_tool_sequence":["read_file","propose_edit","run_test"],"expected_result":"pass"}
+
+{"id":"easy-5","difficulty":"easy","test":"tests/compare.test.ts","bug":"Wrong comparison operator","expected_tool_sequence":["read_file","propose_edit","run_test"],"expected_result":"pass"}
+
+{"id":"easy-6","difficulty":"easy","test":"tests/index.test.ts","bug":"Array index off-by-one","expected_tool_sequence":["read_file","propose_edit","run_test"],"expected_result":"pass"}
+
+{"id":"medium-1","difficulty":"medium","test":"tests/auth.test.ts","bug":"Requires reading auth.ts and config.ts","expected_tool_sequence":["list_dir","read_file","read_file","propose_edit","run_test"],"expected_result":"pass"}
+
+{"id":"medium-2","difficulty":"medium","test":"tests/user.test.ts","bug":"Shared helper returns incorrect value","expected_tool_sequence":["list_dir","grep","read_file","propose_edit","run_test"],"expected_result":"pass"}
+
+{"id":"medium-3","difficulty":"medium","test":"tests/date.test.ts","bug":"Timezone logic across two files","expected_tool_sequence":["grep","read_file","read_file","propose_edit","run_test"],"expected_result":"pass"}
+
+{"id":"medium-4","difficulty":"medium","test":"tests/cart.test.ts","bug":"Calculation bug in utility","expected_tool_sequence":["grep","read_file","propose_edit","run_test"],"expected_result":"pass"}
+
+{"id":"medium-5","difficulty":"medium","test":"tests/api.test.ts","bug":"Incorrect helper function","expected_tool_sequence":["grep","read_file","read_file","propose_edit","run_test"],"expected_result":"pass"}
+
+{"id":"medium-6","difficulty":"medium","test":"tests/order.test.ts","bug":"Logic split across multiple modules","expected_tool_sequence":["list_dir","grep","read_file","propose_edit","run_test"],"expected_result":"pass"}
+
+{"id":"hard-1","difficulty":"hard","test":"tests/shared-util.test.ts","bug":"Shared utility used by multiple modules","expected_tool_sequence":["grep","read_file","read_file","propose_edit","run_test"],"expected_result":"pass"}
+
+{"id":"hard-2","difficulty":"hard","test":"tests/environment.test.ts","bug":"Missing environment variable","expected_tool_sequence":["read_file"],"expected_result":"cannot_fix"}
+
+{"id":"hard-3","difficulty":"hard","test":"tests/config.test.ts","bug":"External configuration outside tool surface","expected_tool_sequence":["read_file"],"expected_result":"cannot_fix"}
