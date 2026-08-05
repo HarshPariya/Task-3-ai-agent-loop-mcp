@@ -1,5 +1,5 @@
 import { createInitialState } from "./state";
-import { runLoop } from "./loop";
+import { runLoop } from "./loop/runLoop";
 import { startMcpServer } from "./mcp";
 
 async function main() {
@@ -7,23 +7,26 @@ async function main() {
   console.log("      AI Agent Started");
   console.log("=================================");
 
-  await startMcpServer();
+  try {
+    await startMcpServer();
+  } catch (error) {
+    console.error("❌ Failed to start MCP server");
+    throw error;
+  }
 
   const testFile =
     process.argv[2] ??
     "tests/math.test.ts";
 
-  console.log(
-    `Target Test: ${testFile}\n`
-  );
+  console.log(`Target Test: ${testFile}\n`);
 
-  const state =
-    createInitialState(testFile);
+  const state = createInitialState(testFile);
 
   await runLoop(state);
 
   console.log("\nAgent Finished.");
-  process.exit(0);
+
+  process.exit(state.completed ? 0 : 1);
 }
 
 main().catch((error) => {

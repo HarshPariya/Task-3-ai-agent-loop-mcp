@@ -1,54 +1,33 @@
 import { ToolCall } from "../types/ToolCall";
 import { ToolResult } from "../types/ToolResult";
-import { applyEdit } from "../src/approval/applyEdit";
+import { validateEditPath } from "../src/approval/validateEdit";
+import { brokenRepoRoot } from "../src/paths";
 
 export async function proposeEditTool(
   tool: ToolCall
 ): Promise<ToolResult> {
-
   try {
-
     const filePath = String(tool.arguments.path);
+    const validation = validateEditPath(filePath, brokenRepoRoot);
 
-    const content = String(tool.arguments.content);
-
-    const result = await applyEdit(
-      filePath,
-      content
-    );
-
-    if (!result.applied) {
-
+    if (!validation.ok) {
       return {
         id: tool.id,
         ok: false,
-        output: "User rejected the proposed edit.",
+        output: validation.reason || "Guardrail violation: unauthorized path access.",
       };
-
     }
 
     return {
-
       id: tool.id,
-
       ok: true,
-
-      output: "User approved. File updated successfully.",
-
+      output: "Proposed edit received and validated. Awaiting harness approval.",
     };
-
   } catch (error: any) {
-
     return {
-
       id: tool.id,
-
       ok: false,
-
       output: error.message,
-
     };
-
   }
-
 }

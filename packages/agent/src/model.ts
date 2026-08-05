@@ -125,11 +125,22 @@ RULES
 - Use cached file contents instead.
 - Only inspect files that are necessary.
 - After identifying the bug, call propose_edit.
-- After propose_edit, immediately call run_test.
+- After a successful propose_edit, stop reasoning for this iteration.
+- The runtime will automatically:
+  1. Request user approval.
+  2. Apply the edit.
+  3. Run the tests.
+- Never call run_test immediately after propose_edit.
+- Never call read_file, list_dir or grep after a successful propose_edit.
+- If tests fail, continue from the new test output.
+- Never propose the exact same edit twice.
+- Never choose a tool with the same arguments unless the test output has changed.
+- Prefer cached file contents over additional tool calls whenever possible.
 - Choose EXACTLY ONE TOOL.
 - Do not explain your reasoning.
 
 `;
+
 
   const response =
     await groq.chat.completions.create({
@@ -139,6 +150,11 @@ RULES
       messages: [
         {
           role: "system",
+          content:
+            "You are an expert AI debugging agent.",
+        },
+        {
+          role: "user",
           content: prompt,
         },
       ],

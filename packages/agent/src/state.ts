@@ -1,7 +1,6 @@
 import { AgentState } from "../types/AgentState";
 
 export const DEFAULT_MAX_STEPS = 12;
-export const DEFAULT_WALL_CLOCK_MS = 300_000;
 
 export function createInitialState(
   test: string,

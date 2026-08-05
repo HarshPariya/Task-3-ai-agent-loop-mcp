@@ -8,11 +8,26 @@ import { grepTool } from "../../tools/grep";
 import { proposeEditTool } from "../../tools/proposeEdit";
 import { runTest } from "../../tools/runTest";
 
+function textResponse(
+  text: string,
+  isError = false
+) {
+  return {
+    content: [
+      {
+        type: "text" as const,
+        text,
+      },
+    ],
+    isError,
+  };
+}
+
 export function registerTools(server: McpServer) {
   server.registerTool(
     "list_dir",
     {
-      description: "List directory",
+      description: "List files and folders inside a directory.",
       inputSchema: {
         path: z.string().default("."),
       },
@@ -24,21 +39,14 @@ export function registerTools(server: McpServer) {
         arguments: { path },
       });
 
-      return {
-        content: [
-          {
-            type: "text",
-            text: result.output,
-          },
-        ],
-      };
+      return textResponse(result.output, !result.ok);
     }
   );
 
   server.registerTool(
     "read_file",
     {
-      description: "Read file",
+      description: "Read the contents of a source file.",
       inputSchema: {
         path: z.string(),
       },
@@ -50,21 +58,14 @@ export function registerTools(server: McpServer) {
         arguments: { path },
       });
 
-      return {
-        content: [
-          {
-            type: "text",
-            text: result.output,
-          },
-        ],
-      };
+      return textResponse(result.output, !result.ok);
     }
   );
 
   server.registerTool(
     "grep",
     {
-      description: "Search inside file",
+      description: "Search for a pattern inside repository files.",
       inputSchema: {
         path: z.string(),
         pattern: z.string(),
@@ -80,21 +81,15 @@ export function registerTools(server: McpServer) {
         },
       });
 
-      return {
-        content: [
-          {
-            type: "text",
-            text: result.output,
-          },
-        ],
-      };
+      return textResponse(result.output, !result.ok);
     }
   );
 
   server.registerTool(
     "propose_edit",
     {
-      description: "Propose a file edit (requires approval before applying)",
+      description:
+        "Propose a complete replacement for a file. User approval is required before applying the edit.",
       inputSchema: {
         path: z.string(),
         content: z.string(),
@@ -104,25 +99,20 @@ export function registerTools(server: McpServer) {
       const result = await proposeEditTool({
         id: randomUUID(),
         name: "propose_edit",
-        arguments: { path, content },
+        arguments: {
+          path,
+          content,
+        },
       });
 
-      return {
-        content: [
-          {
-            type: "text",
-            text: result.output,
-          },
-        ],
-        isError: !result.ok,
-      };
+      return textResponse(result.output, !result.ok);
     }
   );
 
   server.registerTool(
     "run_test",
     {
-      description: "Run project tests",
+      description: "Run the project's test suite.",
       inputSchema: {},
     },
     async () => {
@@ -132,14 +122,7 @@ export function registerTools(server: McpServer) {
         arguments: {},
       });
 
-      return {
-        content: [
-          {
-            type: "text",
-            text: result.output,
-          },
-        ],
-      };
+      return textResponse(result.output, !result.ok);
     }
   );
 }

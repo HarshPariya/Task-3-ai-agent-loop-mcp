@@ -33,6 +33,9 @@ Rules:
 - Each step should be short.
 - Do not explain anything.
 - Do not use markdown.
+- Do not repeat steps.
+- Every step must be unique.
+- Keep steps in execution order.
 - Final step should always be "Run tests".
 
 Example:
@@ -52,6 +55,11 @@ Example:
     messages: [
       {
         role: "system",
+        content:
+          "You are an expert AI debugging planner.",
+      },
+      {
+        role: "user",
         content: prompt,
       },
     ],
@@ -61,7 +69,9 @@ Example:
     const content =
       response.choices[0].message.content ?? "[]";
 
-    return JSON.parse(content);
+    const plan = JSON.parse(content) as string[];
+
+    return [...new Set(plan)].slice(0, 6);
   } catch {
     return [
       "Inspect project",

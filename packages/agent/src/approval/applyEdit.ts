@@ -3,10 +3,16 @@ import path from "path";
 import readline from "readline";
 import { brokenRepoRoot } from "../paths";
 
+import { validateEditPath } from "./validateEdit";
+
 export async function applyEdit(
   filePath: string,
   content: string
 ) {
+  const validation = validateEditPath(filePath, brokenRepoRoot);
+  if (!validation.ok) {
+    throw new Error(validation.reason || "Guardrail violation: unauthorized path access.");
+  }
   console.log("\n=================================");
   console.log("PROPOSED EDIT");
   console.log("=================================\n");

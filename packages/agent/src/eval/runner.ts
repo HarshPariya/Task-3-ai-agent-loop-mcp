@@ -37,10 +37,8 @@ async function runCase(
       await execAsync(
         `pnpm tsx src/index.ts ${test}`,
         {
-          cwd: path.resolve(
-            __dirname,
-            "../.."
-          ),
+          cwd: path.resolve(__dirname, "../.."),
+          timeout: 35_000,
         }
       );
 
@@ -50,10 +48,14 @@ async function runCase(
       console.error(stderr);
     }
 
+    const success =
+      stdout.includes("✅ Tests Passed") ||
+      stdout.includes('"completed": true');
+
     return {
       id: test,
       difficulty: "",
-      success: true,
+      success,
       durationMs: Date.now() - start,
     };
   } catch (error: any) {
@@ -121,8 +123,8 @@ export async function runEval(
 
     console.log(
       result.success
-        ? "PASS"
-        : "FAIL"
+        ? "✅ PASS"
+        : "❌ FAIL"
     );
 
     console.log();
@@ -221,6 +223,15 @@ export async function runEval(
   console.log();
 
   console.table(results);
+  const average =
+    results.reduce(
+      (sum, r) => sum + r.durationMs,
+      0
+    ) / results.length;
+
+  console.log(
+    `Average Time: ${average.toFixed(0)} ms`
+  );
 
   console.log();
 

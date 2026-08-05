@@ -25,7 +25,13 @@ export async function getMcpClient() {
     cwd: agentPackageRoot,
   });
 
-  await client.connect(transport);
+  try {
+    await client.connect(transport);
+  } catch (error) {
+    console.error("❌ Failed to connect to MCP server");
+    client = null;
+    throw error;
+  }
 
   console.log("✅ MCP Client Connected");
 
@@ -34,8 +40,9 @@ export async function getMcpClient() {
 
 export async function callTool(
   name: string,
-  args: Record<string, any>
-) {
+  args: Record<string, unknown>
+): Promise<Awaited<ReturnType<Client["callTool"]>>> 
+{
   const client = await getMcpClient();
 
   return client.callTool({
