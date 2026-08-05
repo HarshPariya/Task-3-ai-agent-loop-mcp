@@ -226,6 +226,26 @@ Implemented an evaluation harness capable of executing the complete benchmark su
 
 ---
 
+## Challenge 6
+
+### MCP Stdio Stream Corruption (Stdout Logging)
+
+**Problem**: The MCP server initialization logged messages directly to `stdout` (`console.log`). Because Stdio transport uses `stdout` for JSON-RPC protocol frames, this non-JSON output corrupted the transport stream, causing the client to immediately close the connection upon launch.
+
+**Solution**: Redirected all server startup logs, warnings, and diagnostic information to `stderr` (e.g. `console.error`). The Stdio transport channel ignores `stderr` output, preventing protocol stream corruption.
+
+---
+
+## Challenge 7
+
+### Interactive Prompt Stalling in Subprocesses (MCP Timeout)
+
+**Problem**: The `propose_edit` tool originally prompted the user for confirmation inside the MCP server subprocess via `readline`. Since the subprocess's stdio streams are piped to the client for JSON-RPC communication, the prompt blocked the connection, resulting in a request timeout (`McpError: MCP error -32001: Request timed out`).
+
+**Solution**: Moved the approval gate prompting and file writing logic to the parent client process (`runLoop.ts`). The MCP server subprocess now only validates path boundaries and returns a validated status, while the parent process prompts the user and writes the verified diff via its own terminal-facing stdin/stdout.
+
+---
+
 # Guardrails
 
 The final implementation includes multiple safety mechanisms.
