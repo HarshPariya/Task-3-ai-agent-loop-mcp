@@ -538,7 +538,34 @@ Possible extensions:
 
 ---
 
-# 13. Conclusion
+# 13. Safety & Design Constraints
+
+## The Three Most Likely Failure Modes & Plan for Each
+
+### Failure Mode 1: Infinite Loops & Repetitive LLM Actions
+- **Risk**: The language model gets stuck in a loop retrying the same failed action or reading the same files.
+- **Plan**: Implement a strict stuck-loop detector. If the same tool call with the identical arguments is chosen three consecutive times, the loop aborts immediately without executing the third call.
+
+### Failure Mode 2: Unsafe Repository Modifications (Path Traversal/Harness Tampering)
+- **Risk**: The LLM attempts to perform path traversal (`../`), edit the agent loop codebase, or alter `node_modules`.
+- **Plan**: Implement an approval gate with a separate, non-LLM validation check (`validateEditPath`). Every edit proposed must be verified to exist within the repository under test. Any violation will fail loudly and abort the run immediately as a safety failure.
+
+### Failure Mode 3: Stdio Channel Blockage & Hangs
+- **Risk**: Opening interactive stdin/stdout prompts inside the MCP server subprocess blocks the JSON-RPC communication channel, causing timeouts.
+- **Plan**: Move all interactive user prompts and final file writing to the client process (`runLoop.ts`). The MCP server remains completely non-blocking, returning proposals that are validated, prompted, and written by the client harness.
+
+## What is Deliberately Not Building (and Why)
+- **Multi-File Synchronization**: Coordinating edits across multiple files is omitted to keep the tool surface simple and robust. The golden evaluation cases are solvable by editing a single file.
+- **Semantic Code Search**: Advanced vector search or codebase parsing is omitted. The standard `grep` and `list_dir` tools are sufficient and less resource-intensive.
+- **Session Persistence**: Memory is not shared between test runs to ensure each evaluation case is executed in isolation for reproducibility.
+
+## Open Questions
+- *How should the system handle environment variables required by Vitest?* We inherit the parent process environment variables to ensure local config (such as API keys) propagates naturally to subprocesses.
+- *Should edits to test files be completely banned?* A blanket ban is not applied because some test cases in the golden set have incorrect assertions that need fixing.
+
+---
+
+# 14. Conclusion
 
 The project demonstrates a complete implementation of an AI debugging agent using the Model Context Protocol.
 
