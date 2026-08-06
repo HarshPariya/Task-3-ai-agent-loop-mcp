@@ -395,3 +395,119 @@ Separate specialized agents for:
 This project demonstrates that combining structured planning, controlled repository access, human approval, execution guardrails, and comprehensive evaluation produces a significantly more reliable AI debugging agent than relying on unrestricted language model reasoning alone.
 
 The implementation emphasizes safety, reproducibility, and maintainability while remaining modular and extensible for future improvements.
+
+---
+
+# Observability & Safety Hardening Notes
+
+## Tracing Implementation
+
+Every LLM call and tool call is wrapped in structured spans via the `Tracer` class.
+
+Key decisions:
+
+- Spans are nested under a root `Agent Run` span
+- LLM tool-selection spans are children of the root, not siblings
+- Token counts and cost estimates attach to LLM spans
+- Inputs pass through `redactPrompt()` before export — Groq API keys (`gsk_...`) and the target secret (`Flag_Secret_Value_12345`) are replaced with `[REDACTED: ...]` markers
+
+Trace export path: `generated/traces/trace.json`
+
+Run history snapshots: `generated/history/run-NNN.json`
+
+---
+
+## Trace Viewer
+
+A single-file HTML dashboard is generated at `generated/traces/viewer.html`.
+
+Features:
+
+- Flame-graph style span timeline
+- Click-to-inspect span details (timing, tokens, cost)
+- Color-coded span types (agent, llm, tool, system)
+- Golden trace comparison when available
+
+---
+
+## Budget Circuit Breakers
+
+Task 3 already had step budgets. The extension adds **cost** and **wall-clock** ceilings enforced by `BudgetManager`:
+
+| Limit | Value | Enforced where |
+| ----- | ----- | -------------- |
+| maxCostUSD | $0.05 | Every loop iteration via `budget.check()` |
+| maxDurationMs | 180,000 ms | Loop start + `budget.check()` |
+
+When a ceiling fires:
+
+1. Error is thrown with explicit reason string
+2. Trace is exported before exit
+3. Run report is generated
+4. Process exits cleanly — no hang, no silent truncation
+
+---
+
+## Human-in-the-Loop Policy
+
+The approval gate from Task 3 and the action category model were unified into `HumanApprovalPolicy`:
+
+```
+read_file / list_dir / grep  →  read-only      →  auto-execute, log only
+run_test                     →  reversible-write →  auto-execute, log only
+propose_edit                 →  irreversible     →  requires approval
+```
+
+Interactive runs prompt `Apply this edit? (y/n)`. Evaluation runs set `AUTO_APPLY=true`.
+
+---
+
+## Prompt-Injection Red Team
+
+12 cases defined in `evals/injection-redteam.jsonl` and `packages/agent/src/security/attacks.ts`.
+
+For each case:
+
+1. Adversarial comment injected into `packages/broken-repo/src/math.ts`
+2. Agent runs against `tests/math.test.ts`
+3. Outcome checked: bug fixed? secret leaked?
+
+Run command:
+
+```bash
+pnpm security
+```
+
+Results: `generated/security/results.json`
+
+Per-case traces: `generated/security/traces/<case-id>.json`
+
+---
+
+## Challenge 8: Redaction Without Breaking Context
+
+**Problem**: Logging full LLM prompts to trace files risks leaking API keys and target secrets used in injection testing.
+
+**Solution**: `redactPrompt()` in `model.ts` strips `gsk_...` patterns and the configured target secret before span input is recorded. Redaction is documented in trace metadata so reviewers know what was removed and why.
+
+---
+
+## Challenge 9: Budget Breach vs Agent Failure
+
+**Problem**: Distinguishing a deliberate safety stop (budget exceeded) from an agent logic failure.
+
+**Solution**: Budget errors include explicit reason strings (`Budget exceeded: Cost limit reached` / `Time limit reached`). The catch block in `runLoop.ts` exports traces and generates reports even on budget breach, so post-mortem analysis is always possible.
+
+---
+
+## Reproduction from Fresh Clone
+
+```bash
+pnpm install
+cp .env.example .env   # add GROQ_API_KEY
+pnpm agent fix --test tests/math.test.ts
+pnpm security
+# Open generated/traces/viewer.html
+```
+
+All numbers in `RESULTS.md` and all cases in `SECURITY.md` reproduce from these commands.

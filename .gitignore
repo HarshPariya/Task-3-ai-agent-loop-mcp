@@ -1,6 +1,38 @@
+# Dependencies
 node_modules/
+.pnpm-store/
+
+# Environment & secrets (never commit API keys)
 .env
-logs/
+.env.local
+.env.*.local
+
+# Build outputs
 dist/
+build/
+*.tsbuildinfo
+
+# Test & coverage
 coverage/
+.nyc_output/
+
+# Runtime logs
+logs/
 *.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / editor
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+.cache/

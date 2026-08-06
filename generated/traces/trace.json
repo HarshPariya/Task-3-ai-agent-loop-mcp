@@ -1,0 +1,16 @@
+[
+  {
+    "id": "124650c8-99e4-4927-b8bd-6b7d5962f951",
+    "name": "Agent Run",
+    "type": "agent",
+    "startTime": 1786016168307,
+    "children": [],
+    "endTime": 1786016169700,
+    "durationMs": 1393,
+    "output": {
+      "completed": true,
+      "steps": 0
+    },
+    "estimatedCostUSD": 0
+  }
+]

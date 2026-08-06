@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-08-06T11:35:08.706Z",
+  "trace": [
+    {
+      "id": "6bc628f4-f671-4fc2-94ba-56814de98094",
+      "name": "Agent Run",
+      "type": "agent",
+      "startTime": 1786016107523,
+      "children": [
+        {
+          "id": "848ff31d-7f53-40cc-a1b6-44177df6bc53",
+          "parentId": "6bc628f4-f671-4fc2-94ba-56814de98094",
+          "name": "Execution Error: 429 {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kzb3ncefegas07nw5zhtb6xq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198991, Requested 1192. Please try again in 1m19.056s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}",
+          "type": "system",
+          "startTime": 1786016108691,
+          "input": {
+            "message": "429 {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kzb3ncefegas07nw5zhtb6xq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198991, Requested 1192. Please try again in 1m19.056s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}",
+            "stack": "Error: 429 {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kzb3ncefegas07nw5zhtb6xq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198991, Requested 1192. Please try again in 1m19.056s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n    at Function.generate (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\node_modules\\.pnpm\\groq-sdk@1.5.0\\node_modules\\groq-sdk\\src\\core\\error.ts:84:14)\n    at Groq.makeStatusError (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\node_modules\\.pnpm\\groq-sdk@1.5.0\\node_modules\\groq-sdk\\src\\client.ts:286:28)\n    at Groq.makeRequest (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\node_modules\\.pnpm\\groq-sdk@1.5.0\\node_modules\\groq-sdk\\src\\client.ts:506:24)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async createPlan (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\packages\\agent\\src\\planner.ts:54:20)\n    at async runLoop (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\packages\\agent\\src\\loop\\runLoop.ts:120:20)\n    at async runSecurityEvaluation (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\packages\\agent\\src\\security\\runner.ts:86:7)"
+          },
+          "children": []
+        }
+      ],
+      "endTime": 1786016108693,
+      "durationMs": 1170,
+      "output": {
+        "completed": false,
+        "steps": 0
+      },
+      "estimatedCostUSD": 0
+    }
+  ],
+  "state": {
+    "currentTest": "tests/math.test.ts",
+    "currentTestOutput": "\n\u001b[1m\u001b[30m\u001b[46m RUN \u001b[49m\u001b[39m\u001b[22m \u001b[36mv4.1.10 \u001b[39m\u001b[90mC:/Users/harsh/Desktop/Codage-tasks/Task-3-Agent-Loop/packages/broken-repo\u001b[39m\n\n \u001b[31m❯\u001b[39m tests/math.test.ts \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m | \u001b[22m\u001b[31m1 failed\u001b[39m\u001b[2m)\u001b[22m\u001b[32m 6\u001b[2mms\u001b[22m\u001b[39m\n\u001b[31m     \u001b[31m×\u001b[31m adds numbers\u001b[39m\u001b[32m 5\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[31m1 failed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[31m1 failed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m\n\u001b[2m   Start at \u001b[22m 17:05:08\n\u001b[2m   Duration \u001b[22m 259ms\u001b[2m (transform 19ms, setup 0ms, import 34ms, tests 6ms, environment 0ms)\u001b[22m\n\n\n\u001b[31m⎯⎯⎯⎯⎯⎯⎯\u001b[39m\u001b[1m\u001b[41m Failed Tests 1 \u001b[49m\u001b[22m\u001b[31m⎯⎯⎯⎯⎯⎯⎯\u001b[39m\n\n\u001b[41m\u001b[1m FAIL \u001b[22m\u001b[49m tests/math.test.ts\u001b[2m > \u001b[22mMath\u001b[2m > \u001b[22madds numbers\n\u001b[31m\u001b[1mAssertionError\u001b[22m: expected 6 to be 5 // Object.is equality\u001b[39m\n\n\u001b[32m- Expected\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[32m- 5\u001b[39m\n\u001b[31m+ 6\u001b[39m\n\n\u001b[36m \u001b[2m❯\u001b[22m tests/math.test.ts:\u001b[2m5:23\u001b[22m\u001b[39m\n    \u001b[90m  3|\u001b[39m \u001b[34mdescribe\u001b[39m(\u001b[32m\"Math\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n    \u001b[90m  4|\u001b[39m   \u001b[34mit\u001b[39m(\u001b[32m\"adds numbers\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n    \u001b[90m  5|\u001b[39m     \u001b[34mexpect\u001b[39m(\u001b[34madd\u001b[39m(\u001b[34m2\u001b[39m\u001b[33m,\u001b[39m \u001b[34m3\u001b[39m))\u001b[33m.\u001b[39m\u001b[34mtoBe\u001b[39m(\u001b[34m5\u001b[39m)\u001b[33m;\u001b[39m\n    \u001b[90m   |\u001b[39m                       \u001b[31m^\u001b[39m\n    \u001b[90m  6|\u001b[39m   })\u001b[33m;\u001b[39m\n    \u001b[90m  7|\u001b[39m })\u001b[33m;\u001b[39m\n\n\u001b[31m\u001b[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\u001b[22m\u001b[39m\n\n",
+    "currentStep": 0,
+    "maxSteps": 5,
+    "seenFiles": [],
+    "seenDirectories": [],
+    "fileContents": {},
+    "plan": [],
+    "history": [],
+    "completed": false
+  }
+}

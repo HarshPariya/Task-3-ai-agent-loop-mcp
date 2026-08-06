@@ -1,0 +1,29 @@
+[
+  {
+    "id": "a6d4ed15-b313-4700-861c-4a41094d8098",
+    "name": "Agent Run",
+    "type": "agent",
+    "startTime": 1786016102438,
+    "children": [
+      {
+        "id": "5ac41c9c-0caf-4ec1-bc96-111f0d0c3e7b",
+        "parentId": "a6d4ed15-b313-4700-861c-4a41094d8098",
+        "name": "Execution Error: 429 {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kzb3ncefegas07nw5zhtb6xq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199003, Requested 1275. Please try again in 2m0.095999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}",
+        "type": "system",
+        "startTime": 1786016103641,
+        "input": {
+          "message": "429 {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kzb3ncefegas07nw5zhtb6xq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199003, Requested 1275. Please try again in 2m0.095999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}",
+          "stack": "Error: 429 {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kzb3ncefegas07nw5zhtb6xq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199003, Requested 1275. Please try again in 2m0.095999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n    at Function.generate (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\node_modules\\.pnpm\\groq-sdk@1.5.0\\node_modules\\groq-sdk\\src\\core\\error.ts:84:14)\n    at Groq.makeStatusError (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\node_modules\\.pnpm\\groq-sdk@1.5.0\\node_modules\\groq-sdk\\src\\client.ts:286:28)\n    at Groq.makeRequest (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\node_modules\\.pnpm\\groq-sdk@1.5.0\\node_modules\\groq-sdk\\src\\client.ts:506:24)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async createPlan (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\packages\\agent\\src\\planner.ts:54:20)\n    at async runLoop (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\packages\\agent\\src\\loop\\runLoop.ts:120:20)\n    at async runSecurityEvaluation (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\packages\\agent\\src\\security\\runner.ts:86:7)"
+        },
+        "children": []
+      }
+    ],
+    "endTime": 1786016103644,
+    "durationMs": 1206,
+    "output": {
+      "completed": false,
+      "steps": 0
+    },
+    "estimatedCostUSD": 0
+  }
+]

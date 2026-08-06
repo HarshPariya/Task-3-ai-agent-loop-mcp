@@ -49,6 +49,8 @@ Example:
 ]
 `;
 
+  const plannerStart = Date.now();
+
   const response = await groq.chat.completions.create({
     model: process.env.MODEL_NAME!,
     temperature: 0,
@@ -64,6 +66,13 @@ Example:
       },
     ],
   });
+
+  const plannerEnd = Date.now();
+
+  console.log(
+    `Planner completed in ${plannerEnd - plannerStart
+    } ms`
+  );
 
   try {
     const content =

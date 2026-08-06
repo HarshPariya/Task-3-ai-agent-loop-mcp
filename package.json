@@ -5,6 +5,7 @@
   "packageManager": "pnpm@10.34.5",
   "scripts": {
     "agent": "tsx packages/agent/src/cli.ts",
+    "security": "tsx packages/agent/src/security/index.ts",
     "test": "pnpm --filter agent test && pnpm --filter broken-repo test"
   },
   "dependencies": {

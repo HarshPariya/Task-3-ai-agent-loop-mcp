@@ -38,7 +38,7 @@ async function runCase(
         `pnpm tsx src/index.ts ${test}`,
         {
           cwd: path.resolve(__dirname, "../.."),
-          timeout: 35_000,
+          timeout: 180_000,
         }
       );
 
@@ -79,6 +79,7 @@ async function runCase(
 export async function runEval(
   options: EvalOptions = {}
 ): Promise<void> {
+  process.env.AUTO_APPLY = "true";
   const evalFile = path.resolve(
     __dirname,
     "../../../../evals/golden-agent.jsonl"

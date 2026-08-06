@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-08-06T10:14:22.011Z",
+  "trace": [
+    {
+      "id": "db1e22fa-7a76-4496-b39a-1ae412b8743d",
+      "name": "Agent Run",
+      "type": "agent",
+      "startTime": 1786011259992,
+      "children": [
+        {
+          "id": "6a3ec6c1-5ba1-4153-9948-7152cbd3f2e0",
+          "parentId": "db1e22fa-7a76-4496-b39a-1ae412b8743d",
+          "name": "Execution Error: 429 {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kzb3ncefegas07nw5zhtb6xq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199073, Requested 1546. Please try again in 4m27.408s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}",
+          "type": "system",
+          "startTime": 1786011261973,
+          "input": {
+            "message": "429 {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kzb3ncefegas07nw5zhtb6xq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199073, Requested 1546. Please try again in 4m27.408s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}",
+            "stack": "Error: 429 {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kzb3ncefegas07nw5zhtb6xq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199073, Requested 1546. Please try again in 4m27.408s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n    at Function.generate (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\node_modules\\.pnpm\\groq-sdk@1.5.0\\node_modules\\groq-sdk\\src\\core\\error.ts:84:14)\n    at Groq.makeStatusError (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\node_modules\\.pnpm\\groq-sdk@1.5.0\\node_modules\\groq-sdk\\src\\client.ts:286:28)\n    at Groq.makeRequest (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\node_modules\\.pnpm\\groq-sdk@1.5.0\\node_modules\\groq-sdk\\src\\client.ts:506:24)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async createPlan (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\packages\\agent\\src\\planner.ts:54:20)\n    at async runLoop (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\packages\\agent\\src\\loop\\runLoop.ts:120:20)\n    at async main (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\packages\\agent\\src\\index.ts:25:3)"
+          },
+          "children": []
+        }
+      ],
+      "endTime": 1786011261975,
+      "durationMs": 1983,
+      "output": {
+        "completed": false,
+        "steps": 0
+      },
+      "estimatedCostUSD": 0
+    }
+  ],
+  "state": {
+    "currentTest": "tests/api.test.ts",
+    "currentTestOutput": "\n\u001b[1m\u001b[30m\u001b[46m RUN \u001b[49m\u001b[39m\u001b[22m \u001b[36mv4.1.10 \u001b[39m\u001b[90mC:/Users/harsh/Desktop/Codage-tasks/Task-3-Agent-Loop/packages/broken-repo\u001b[39m\n\n \u001b[31m❯\u001b[39m tests/api.test.ts \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m | \u001b[22m\u001b[31m1 failed\u001b[39m\u001b[2m)\u001b[22m\u001b[32m 11\u001b[2mms\u001b[22m\u001b[39m\n\u001b[31m     \u001b[31m×\u001b[31m builds correct user url\u001b[39m\u001b[32m 9\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[31m1 failed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[31m1 failed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m\n\u001b[2m   Start at \u001b[22m 15:44:21\n\u001b[2m   Duration \u001b[22m 452ms\u001b[2m (transform 44ms, setup 0ms, import 77ms, tests 11ms, environment 0ms)\u001b[22m\n\n\n\u001b[31m⎯⎯⎯⎯⎯⎯⎯\u001b[39m\u001b[1m\u001b[41m Failed Tests 1 \u001b[49m\u001b[22m\u001b[31m⎯⎯⎯⎯⎯⎯⎯\u001b[39m\n\n\u001b[41m\u001b[1m FAIL \u001b[22m\u001b[49m tests/api.test.ts\u001b[2m > \u001b[22mAPI url builder\u001b[2m > \u001b[22mbuilds correct user url\n\u001b[31m\u001b[1mAssertionError\u001b[22m: expected 'https://api.example.comusers/1' to be 'https://api.example.com/users/1' // Object.is equality\u001b[39m\n\nExpected: \u001b[32m\"https://api.example.com\u001b[7m/\u001b[27musers/1\"\u001b[39m\nReceived: \u001b[31m\"https://api.example.comusers/1\"\u001b[39m\n\n\u001b[36m \u001b[2m❯\u001b[22m tests/api.test.ts:\u001b[2m5:25\u001b[22m\u001b[39m\n    \u001b[90m  3|\u001b[39m \u001b[34mdescribe\u001b[39m(\u001b[32m\"API url builder\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n    \u001b[90m  4|\u001b[39m   \u001b[34mit\u001b[39m(\u001b[32m\"builds correct user url\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n    \u001b[90m  5|\u001b[39m     \u001b[34mexpect\u001b[39m(\u001b[34mfetchUser\u001b[39m())\u001b[33m.\u001b[39m\u001b[34mtoBe\u001b[39m(\u001b[32m\"https://api.example.com/users/1\"\u001b[39m)\u001b[33m;\u001b[39m\n    \u001b[90m   |\u001b[39m                         \u001b[31m^\u001b[39m\n    \u001b[90m  6|\u001b[39m   })\u001b[33m;\u001b[39m\n    \u001b[90m  7|\u001b[39m })\u001b[33m;\u001b[39m\n\n\u001b[31m\u001b[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\u001b[22m\u001b[39m\n\n",
+    "currentStep": 0,
+    "maxSteps": 12,
+    "seenFiles": [],
+    "seenDirectories": [],
+    "fileContents": {},
+    "plan": [],
+    "history": [],
+    "completed": false
+  }
+}

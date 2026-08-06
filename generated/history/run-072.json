@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-08-06T09:59:21.747Z",
+  "trace": [
+    {
+      "id": "9934eabf-7595-4e09-ac51-f2b3240051d5",
+      "name": "Agent Run",
+      "type": "agent",
+      "startTime": 1786010359743,
+      "children": [],
+      "endTime": 1786010361715,
+      "durationMs": 1972,
+      "output": {
+        "completed": true,
+        "steps": 0
+      },
+      "estimatedCostUSD": 0
+    }
+  ],
+  "state": {
+    "currentTest": "tests/shared-util.test.ts",
+    "currentTestOutput": "\n\u001b[1m\u001b[30m\u001b[46m RUN \u001b[49m\u001b[39m\u001b[22m \u001b[36mv4.1.10 \u001b[39m\u001b[90mC:/Users/harsh/Desktop/Codage-tasks/Task-3-Agent-Loop/packages/broken-repo\u001b[39m\n\n \u001b[32m✓\u001b[39m tests/shared-util.test.ts \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 7\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m1 passed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m1 passed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m\n\u001b[2m   Start at \u001b[22m 15:29:21\n\u001b[2m   Duration \u001b[22m 506ms\u001b[2m (transform 47ms, setup 0ms, import 87ms, tests 7ms, environment 0ms)\u001b[22m\n\n",
+    "currentStep": 0,
+    "maxSteps": 12,
+    "seenFiles": [],
+    "seenDirectories": [],
+    "fileContents": {},
+    "plan": [],
+    "history": [],
+    "completed": true
+  }
+}

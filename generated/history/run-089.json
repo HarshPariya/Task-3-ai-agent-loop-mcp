@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-08-06T10:14:13.984Z",
+  "trace": [
+    {
+      "id": "d4f20b8b-81d2-4ad8-9756-743a618781a0",
+      "name": "Agent Run",
+      "type": "agent",
+      "startTime": 1786011251927,
+      "children": [
+        {
+          "id": "56ccbaf6-a1c8-46bb-939a-d46384db804d",
+          "parentId": "d4f20b8b-81d2-4ad8-9756-743a618781a0",
+          "name": "Execution Error: 429 {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kzb3ncefegas07nw5zhtb6xq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199092, Requested 1473. Please try again in 4m4.079999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}",
+          "type": "system",
+          "startTime": 1786011253951,
+          "input": {
+            "message": "429 {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kzb3ncefegas07nw5zhtb6xq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199092, Requested 1473. Please try again in 4m4.079999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}",
+            "stack": "Error: 429 {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kzb3ncefegas07nw5zhtb6xq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199092, Requested 1473. Please try again in 4m4.079999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n    at Function.generate (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\node_modules\\.pnpm\\groq-sdk@1.5.0\\node_modules\\groq-sdk\\src\\core\\error.ts:84:14)\n    at Groq.makeStatusError (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\node_modules\\.pnpm\\groq-sdk@1.5.0\\node_modules\\groq-sdk\\src\\client.ts:286:28)\n    at Groq.makeRequest (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\node_modules\\.pnpm\\groq-sdk@1.5.0\\node_modules\\groq-sdk\\src\\client.ts:506:24)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async createPlan (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\packages\\agent\\src\\planner.ts:54:20)\n    at async runLoop (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\packages\\agent\\src\\loop\\runLoop.ts:120:20)\n    at async main (C:\\Users\\harsh\\Desktop\\Codage-tasks\\Task-3-Agent-Loop\\packages\\agent\\src\\index.ts:25:3)"
+          },
+          "children": []
+        }
+      ],
+      "endTime": 1786011253953,
+      "durationMs": 2026,
+      "output": {
+        "completed": false,
+        "steps": 0
+      },
+      "estimatedCostUSD": 0
+    }
+  ],
+  "state": {
+    "currentTest": "tests/date.test.ts",
+    "currentTestOutput": "\n\u001b[1m\u001b[30m\u001b[46m RUN \u001b[49m\u001b[39m\u001b[22m \u001b[36mv4.1.10 \u001b[39m\u001b[90mC:/Users/harsh/Desktop/Codage-tasks/Task-3-Agent-Loop/packages/broken-repo\u001b[39m\n\n \u001b[31m❯\u001b[39m tests/date.test.ts \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m | \u001b[22m\u001b[31m1 failed\u001b[39m\u001b[2m)\u001b[22m\u001b[32m 12\u001b[2mms\u001b[22m\u001b[39m\n\u001b[31m     \u001b[31m×\u001b[31m adds offset correctly\u001b[39m\u001b[32m 10\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[31m1 failed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[31m1 failed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m\n\u001b[2m   Start at \u001b[22m 15:44:13\n\u001b[2m   Duration \u001b[22m 524ms\u001b[2m (transform 41ms, setup 0ms, import 72ms, tests 12ms, environment 0ms)\u001b[22m\n\n\n\u001b[31m⎯⎯⎯⎯⎯⎯⎯\u001b[39m\u001b[1m\u001b[41m Failed Tests 1 \u001b[49m\u001b[22m\u001b[31m⎯⎯⎯⎯⎯⎯⎯\u001b[39m\n\n\u001b[41m\u001b[1m FAIL \u001b[22m\u001b[49m tests/date.test.ts\u001b[2m > \u001b[22mDate conversion\u001b[2m > \u001b[22madds offset correctly\n\u001b[31m\u001b[1mAssertionError\u001b[22m: expected +0 to be 18000000 // Object.is equality\u001b[39m\n\n\u001b[32m- Expected\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[32m- 18000000\u001b[39m\n\u001b[31m+ 0\u001b[39m\n\n\u001b[36m \u001b[2m❯\u001b[22m tests/date.test.ts:\u001b[2m5:28\u001b[22m\u001b[39m\n    \u001b[90m  3|\u001b[39m \u001b[34mdescribe\u001b[39m(\u001b[32m\"Date conversion\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n    \u001b[90m  4|\u001b[39m   \u001b[34mit\u001b[39m(\u001b[32m\"adds offset correctly\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n    \u001b[90m  5|\u001b[39m     \u001b[34mexpect\u001b[39m(\u001b[34mformatLocal\u001b[39m(\u001b[34m0\u001b[39m))\u001b[33m.\u001b[39m\u001b[34mtoBe\u001b[39m(\u001b[34m5\u001b[39m \u001b[33m*\u001b[39m \u001b[34m3600\u001b[39m \u001b[33m*\u001b[39m \u001b[34m1000\u001b[39m)\u001b[33m;\u001b[39m\n    \u001b[90m   |\u001b[39m                            \u001b[31m^\u001b[39m\n    \u001b[90m  6|\u001b[39m   })\u001b[33m;\u001b[39m\n    \u001b[90m  7|\u001b[39m })\u001b[33m;\u001b[39m\n\n\u001b[31m\u001b[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\u001b[22m\u001b[39m\n\n",
+    "currentStep": 0,
+    "maxSteps": 12,
+    "seenFiles": [],
+    "seenDirectories": [],
+    "fileContents": {},
+    "plan": [],
+    "history": [],
+    "completed": false
+  }
+}
