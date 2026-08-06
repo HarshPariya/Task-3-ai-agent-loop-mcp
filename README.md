@@ -257,29 +257,29 @@ Stop
 
 The agent maintains the following state:
 
-| Property | Description |
-|-----------|-------------|
-| currentTest | Active failing test |
-| currentTestOutput | Latest test output |
-| currentStep | Current iteration |
-| maxSteps | Maximum allowed iterations |
-| seenFiles | Already inspected files |
-| seenDirectories | Already listed directories |
-| fileContents | Cached repository files |
-| history | Tool execution history |
-| completed | Success flag |
+| Property          | Description                |
+| ----------------- | -------------------------- |
+| currentTest       | Active failing test        |
+| currentTestOutput | Latest test output         |
+| currentStep       | Current iteration          |
+| maxSteps          | Maximum allowed iterations |
+| seenFiles         | Already inspected files    |
+| seenDirectories   | Already listed directories |
+| fileContents      | Cached repository files    |
+| history           | Tool execution history     |
+| completed         | Success flag               |
 
 ---
 
 # 🔨 Available Tools
 
-| Tool | Purpose |
-|-------|----------|
-| read_file | Read source code |
-| list_dir | Explore repository |
-| grep | Search repository |
+| Tool         | Purpose                   |
+| ------------ | ------------------------- |
+| read_file    | Read source code          |
+| list_dir     | Explore repository        |
+| grep         | Search repository         |
 | propose_edit | Request file modification |
-| run_test | Execute tests |
+| run_test     | Execute tests             |
 
 ---
 
@@ -334,11 +334,11 @@ The project reports:
 Golden evaluation contains:
 
 | Difficulty | Cases |
-|------------|------:|
-| Easy | 6 |
-| Medium | 6 |
-| Hard | 3 |
-| Total | 15 |
+| ---------- | ----: |
+| Easy       |     6 |
+| Medium     |     6 |
+| Hard       |     3 |
+| Total      |    15 |
 
 Each evaluation records:
 
@@ -354,25 +354,25 @@ Each evaluation records:
 Run the debugging agent
 
 ```bash
-pnpm tsx src/cli.ts fix --test tests/math.test.ts
+pnpm agent fix --test tests/math.test.ts
 ```
 
 Run evaluation
 
 ```bash
-pnpm tsx src/cli.ts eval
+pnpm agent eval
 ```
 
 Run live evaluation
 
 ```bash
-pnpm tsx src/cli.ts eval --live
+pnpm agent eval --live
 ```
 
 Compare against baseline
 
 ```bash
-pnpm tsx src/cli.ts eval --compare baseline.json
+pnpm agent eval --compare baseline.json
 ```
 
 ---
@@ -411,20 +411,17 @@ Trajectory contains:
 
 # 🎯 Assignment Requirements
 
-| Requirement | Status |
-|-------------|--------|
-| Agent Loop | ✅ |
-| Planner | ✅ |
-| MCP Tools | ✅ |
-| Approval Workflow | ✅ |
-| Trajectory Logging | ✅ |
-| Metrics | ✅ |
-| Evaluation Harness | ✅ |
-| Golden Dataset | ✅ |
-| CLI | ✅ |
-| Documentation | ✅ |
+| Requirement        | Status |
+| ------------------ | ------ |
+| Agent Loop         | ✅     |
+| Planner            | ✅     |
+| MCP Tools          | ✅     |
+| Approval Workflow  | ✅     |
+| Trajectory Logging | ✅     |
+| Metrics            | ✅     |
+| Evaluation Harness | ✅     |
+| Golden Dataset     | ✅     |
+| CLI                | ✅     |
+| Documentation      | ✅     |
 
 ---
-
-
-
